@@ -6,46 +6,55 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-type para struct {
-	one []int
-	two int
+type input struct {
+	nums   []int
+	target int
 }
 
 type ans struct {
-	one []int
+	nums []int
 }
 
-type question struct {
-	p para
-	a ans
+type tc struct {
+	input input
+	a     ans
 }
 
-func Test_OK(t *testing.T) {
+var tcs = []tc{
+	tc{
+		input: input{
+			nums:   []int{3, 2, 4},
+			target: 6,
+		},
+		a: ans{
+			nums: []int{1, 2},
+		},
+	},
+	tc{
+		input: input{
+			nums:   []int{3, 2, 4},
+			target: 8,
+		},
+		a: ans{
+			nums: nil,
+		},
+	},
+}
+
+func Test_twoSum(t *testing.T) {
 	ast := assert.New(t)
 
-	qs := []question{
-		question{
-			p: para{
-				one: []int{3, 2, 4},
-				two: 6,
-			},
-			a: ans{
-				one: []int{1, 2},
-			},
-		},
-		question{
-			p: para{
-				one: []int{3, 2, 4},
-				two: 8,
-			},
-			a: ans{
-				one: nil,
-			},
-		},
+	for _, tc := range tcs {
+		a, input := tc.a, tc.input
+		ast.Equal(a.nums, twoSum(input.nums, input.target), "Input:%v", input)
 	}
+}
 
-	for _, q := range qs {
-		a, p := q.a, q.p
-		ast.Equal(a.one, twoSum(p.one, p.two), "Input:%v", p)
+func Benchmark_singleNumber(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range tcs {
+			input := tc.input
+			twoSum(input.nums, input.target)
+		}
 	}
 }
