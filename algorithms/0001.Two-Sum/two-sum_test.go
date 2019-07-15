@@ -41,7 +41,7 @@ var tcs = []tc{
 	},
 }
 
-func Test_twoSum(t *testing.T) {
+func Test_Problem0001(t *testing.T) {
 	ast := assert.New(t)
 
 	for _, tc := range tcs {
@@ -50,7 +50,7 @@ func Test_twoSum(t *testing.T) {
 	}
 }
 
-func Benchmark_singleNumber(b *testing.B) {
+func Benchmark_Problem0001(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range tcs {
 			input := tc.input
