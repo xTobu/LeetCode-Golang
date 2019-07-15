@@ -22,7 +22,7 @@ var tcs = []struct {
 	},
 }
 
-func Test_singleNumber(t *testing.T) {
+func Test_Problem0136(t *testing.T) {
 	ast := assert.New(t)
 
 	for _, tc := range tcs {
@@ -30,7 +30,7 @@ func Test_singleNumber(t *testing.T) {
 	}
 }
 
-func Benchmark_singleNumber(b *testing.B) {
+func Benchmark_Problem0136(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range tcs {
 			singleNumber(tc.nums)
