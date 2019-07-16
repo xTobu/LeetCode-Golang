@@ -48,11 +48,29 @@ func Test_Problem0350(t *testing.T) {
 	}
 }
 
+func Test_Problem0350_2(t *testing.T) {
+	ast := assert.New(t)
+	for _, tc := range tcs {
+		output, input := tc.output, tc.input
+		ast.Equal(output.answer, intersect2(input.nums1, input.nums2), "Input: %v", input)
+
+	}
+}
+
 func Benchmark_Problem0350(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range tcs {
 			input := tc.input
 			intersect(input.nums1, input.nums2)
+		}
+	}
+}
+
+func Benchmark_Problem0350_2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range tcs {
+			input := tc.input
+			intersect2(input.nums1, input.nums2)
 		}
 	}
 }

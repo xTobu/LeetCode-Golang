@@ -48,3 +48,39 @@ func intersect(nums1 []int, nums2 []int) []int {
 	return res
 
 }
+
+/**
+ * 建立一個 hash 表
+ **/
+func intersect2(nums1 []int, nums2 []int) (ret []int) {
+
+	// 初始化一個 map ，做 hash 使用
+	m := make(map[int]int)
+
+	// 對 nums1 跑迴圈，
+	// 以各個元素作為 key 值，去找 m 裡面是否有存在過，
+	// 有的話加一，沒有則建立
+	for _, v := range nums1 {
+		if _, ok := m[v]; ok {
+			m[v]++
+		} else {
+			m[v] = 1
+		}
+	}
+
+	// 對 nums2 跑迴圈，
+	// 以各個元素作為 key 值，去找 m 裡面是否有存在，
+	// 若存在，則將其值存進 ret 裡，
+	// 並對 m 裡對應到的位置剪一
+	//
+	// 條件判斷裡需增加 val > 0，因為 0 也會等於 ok ，
+	// 不判斷的話， ret 會重複寫入。
+	for _, v := range nums2 {
+		if val, ok := m[v]; val > 0 && ok {
+			ret = append(ret, v)
+			m[v]--
+		}
+	}
+
+	return ret
+}
