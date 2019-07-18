@@ -2,7 +2,8 @@ package problem0917
 
 /**
  * 題目為翻轉字串，但只反轉英文字母
- * 反轉字串的方式和 344. Reverse String 一樣，
+ * 反轉字串的方式和 344. Reverse String 一樣
+ * （但這次 for 的部份分開來寫，個人認為比較好閱讀），
  * 但因應題目，故建立 isLetter 去判斷欲反轉的左右邊際，
  * 於是都以 left < right 並加上條件 !isLetter 的前提去跑遍歷，
  * 以尋找到都是字母的左右邊際，並將兩者反轉，
@@ -10,8 +11,8 @@ package problem0917
  */
 func reverseOnlyLetters(S string) string {
 	bs := []byte(S)
-
-	for left, right := 0, len(bs)-1; left < right; left, right = left+1, right-1 {
+	left, right := 0, len(bs)-1
+	for left < right {
 		for left < right && !isLetter(bs[left]) {
 			left++
 		}
@@ -19,6 +20,7 @@ func reverseOnlyLetters(S string) string {
 			right--
 		}
 		bs[left], bs[right] = bs[right], bs[left]
+		left, right = left+1, right-1
 	}
 
 	return string(bs)
