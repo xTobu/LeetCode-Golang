@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/xTobu/LeetCode-Golang/lib/utils"
 )
 
 type tc struct {
@@ -35,7 +36,7 @@ func Test_Problem0206(t *testing.T) {
 	ast := assert.New(t)
 	for _, tc := range tcs {
 		output, input := tc.output, tc.input
-		ast.Equal(output.answer, l2s(reverseList(s2l(input.nums))), "Input: %v", input)
+		ast.Equal(output.answer, utils.ListNode2Ints(reverseList(utils.Ints2ListNode(input.nums))), "Input: %v", input)
 
 	}
 }
@@ -43,7 +44,7 @@ func Test_Problem0206(t *testing.T) {
 func Benchmark_Problem0206(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range tcs {
-			reverseList(s2l(tc.input.nums))
+			reverseList(utils.Ints2ListNode(tc.input.nums))
 		}
 	}
 }

@@ -1,10 +1,11 @@
 package problem0206
 
-// ListNode ...
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import (
+	"github.com/xTobu/LeetCode-Golang/lib/utils"
+)
+
+// ListNode is tree's node
+type ListNode = utils.ListNode
 
 func reverseList(head *ListNode) *ListNode {
 	var prev *ListNode
