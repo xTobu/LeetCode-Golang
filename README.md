@@ -8,7 +8,7 @@ LeetCode with Golang
 ### Run Test
 
 ```bash
-bash ./test.bash
+bash ./test.sh
 ```
 
 ### Display details
