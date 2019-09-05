@@ -5,15 +5,16 @@ package problem0169
 // 以 num 作為雜湊表的 key,
 // 遇到 num 存在時 +1 ,
 // 依據題意去判斷數量是否有大於長度一半
-func majorityElement(nums []int) int {
+func majorityElement(nums []int) (res int) {
 	m := make(map[int]int)
 	for _, v := range nums {
+		res = v
 		m[v] = m[v] + 1
 		if m[v] > len(nums)/2 {
-			return v
+			return
 		}
 	}
-	return 0
+	return
 }
 
 /**

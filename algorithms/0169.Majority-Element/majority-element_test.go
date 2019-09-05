@@ -36,6 +36,14 @@ var tcs = []tc{
 			answer: 2,
 		},
 	},
+	tc{
+		input{
+			nums: []int{0, 4},
+		},
+		output{
+			answer: 4,
+		},
+	},
 }
 
 func Test_Problem0206(t *testing.T) {
